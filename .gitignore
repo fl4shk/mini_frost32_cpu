@@ -1,0 +1,6 @@
+docs/*/build/*
+*.sw[po]
+
+tags
+*/tags
+types*.taghl
