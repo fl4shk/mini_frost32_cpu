@@ -20,7 +20,7 @@
 %%]{biblatex}
 %\addbibresource{project_refs.bib}
 
-\title{Example}
+\title{Mini Frost32 CPU}
 %\date{20YY-MM-DD}
 \author{Andrew Clark}
 
@@ -29,21 +29,21 @@
 %\renewcommand{\thesubsection}{}
 %\renewcommand{\thesubsubsection}{}
 
-%% Alternative form of doing section stuff
-%\renewcommand{\thesection}{}
-%\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
-%\makeatletter
-%\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
-%\let\sectionignore\@gobbletwo
-%\let\latex@numberline\numberline
-%\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
-%\makeatother
-%
-%\makeatletter
-%\renewcommand\tableofcontents{%
-%    \@starttoc{toc}%
-%}
-%\makeatother
+% Alternative form of doing section stuff
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\csname #1ignore\expandafter\endcsname\csname the#1\endcsname\quad}
+\let\sectionignore\@gobbletwo
+\let\latex@numberline\numberline
+\def\numberline#1{\if\relax#1\relax\else\latex@numberline{#1}\fi}
+\makeatother
+
+\makeatletter
+\renewcommand\tableofcontents{%
+    \@starttoc{toc}%
+}
+\makeatother
 
 %Figures
 %\begin{figure}[H]
@@ -103,15 +103,183 @@
 %\end{table}
 
 \begin{document}
-	%\maketitle
-	%\pagenumbering{gobble}
-	%\newpage
-	%\pagenumbering{arabic}
+	\maketitle
+	\pagenumbering{gobble}
+	\newpage
+	\pagenumbering{arabic}
 
 
-	%\doublespacing
+	\doublespacing
 	%\section{Abstract}
-	%\setcounter{section}{-1}
+	\setcounter{section}{-1}
+
+	\singlespacing
+
+	\section{Table of Contents}
+	\tableofcontents
+
+	\newpage
+	\doublespacing
+
+	\section{Registers}
+
+	There are 16 general purpose registers:
+	\texttt{r0} (always zero), \texttt{r1}, \texttt{r2}, \texttt{r3},
+	\texttt{r4}, \texttt{r5}, \texttt{r6}, \texttt{r7},
+	\texttt{r8}, \texttt{r9}, \texttt{r10}, \texttt{r11},
+	\texttt{r12}, \texttt{lr}, \texttt{fp}, \texttt{sp}
+
+	One last register is the program counter, \texttt{pc}.
+
+	\singlespacing
+	\section{Instructions and Encoding}
+	\begin{itemize}
+		\item \texttt{\textbf{add} rA, rB, rC}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0000 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding Note:  \texttt{rC != 0}
+		\end{itemize}
+		\item \texttt{\textbf{addi} rA, rB, simm16}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0000 aaaa bbbb 0000  iiii iiii iiii iiii}
+		\end{itemize}
+
+		\item \texttt{\textbf{sub} rA, rB, rC}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0001 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding Note:  \texttt{rC != 0}
+		\end{itemize}
+		\item \texttt{\textbf{subi} rA, rB, simm16}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0001 aaaa bbbb 0000  iiii iiii iiii iiii}
+		\end{itemize}
+
+		\item \texttt{\textbf{sltu} rA, rB, rC}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0010 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding Note:  \texttt{rC != 0}
+		\end{itemize}
+		\item \texttt{\textbf{sltui} rA, rB, simm16}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0010 aaaa bbbb 0000  iiii iiii iiii iiii}
+		\end{itemize}
+
+		\item \texttt{\textbf{slts} rA, rB, rC}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0011 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding Note:  \texttt{rC != 0}
+		\end{itemize}
+		\item \texttt{\textbf{sltsi} rA, rB, simm16}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0011 aaaa bbbb 0000  iiii iiii iiii iiii}
+		\end{itemize}
+
+		\item \texttt{\textbf{add} rA, pc, rC}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0100 aaaa 0000 cccc  0000 0000 0000 0000}
+			\item Encoding Note:  \texttt{rC != 0}
+		\end{itemize}
+		\item \texttt{\textbf{addi} rA, pc, simm16}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0100 aaaa 0000 0000  iiii iiii iiii iiii}
+		\end{itemize}
+
+		\item \texttt{\textbf{lui} rA, simm16}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0101 aaaa 0000 0000  iiii iiii iiii iiii}
+		\end{itemize}
+
+		\item \texttt{\textbf{lsl} rA, rB, rC}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0110 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding Note:  \texttt{rC != 0}
+		\end{itemize}
+		\item \texttt{\textbf{lsli} rA, rB, simm16}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0110 aaaa bbbb 0000  iiii iiii iiii iiii}
+		\end{itemize}
+
+		\item \texttt{\textbf{lsr} rA, rB, rC}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0111 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding Note:  \texttt{rC != 0}
+		\end{itemize}
+		\item \texttt{\textbf{lsri} rA, rB, simm16}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{0111 aaaa bbbb 0000  iiii iiii iiii iiii}
+		\end{itemize}
+
+		\item \texttt{\textbf{asr} rA, rB, rC}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{1000 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding Note:  \texttt{rC != 0}
+		\end{itemize}
+		\item \texttt{\textbf{asri} rA, rB, simm16}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{1000 aaaa bbbb 0000  iiii iiii iiii iiii}
+		\end{itemize}
+
+
+		\item \texttt{\textbf{jmp} rA}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{1001 aaaa 0000 0000  0000 0000 0000 0000}
+		\end{itemize}
+
+		\item \texttt{\textbf{beq} rA, rB, simm16}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{1010 aaaa bbbb 0000  iiii iiii iiii iiii}
+		\end{itemize}
+
+		\item \texttt{\textbf{bne} rA, rB, simm16}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{1011 aaaa bbbb 0000  iiii iiii iiii iiii}
+		\end{itemize}
+
+		\item \texttt{\textbf{ldr} rA, [rB, rC]}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{1100 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding Note:  \texttt{rC != 0}
+		\end{itemize}
+		\item \texttt{\textbf{ldri} rA, [rB, simm16]}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{1100 aaaa bbbb 0000  iiii iiii iiii iiii}
+		\end{itemize}
+
+		\item \texttt{\textbf{str} rA, [rB, rC]}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{1101 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding Note:  \texttt{rC != 0}
+		\end{itemize}
+		\item \texttt{\textbf{stri} rA, [rB, simm16]}
+		\begin{itemize}
+			\item Encoding: 
+				\texttt{1101 aaaa bbbb 0000  iiii iiii iiii iiii}
+		\end{itemize}
+
+	\end{itemize}
 
 
 	%\printbibliography[heading=bibnumbered,title={Bibliography}]
