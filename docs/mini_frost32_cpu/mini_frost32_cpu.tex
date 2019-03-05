@@ -136,149 +136,139 @@
 	\begin{itemize}
 		\item \texttt{\textbf{add} rA, rB, rC}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0000 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding:  \texttt{0x0 a b c  0x0000}
 			\item Encoding Note:  \texttt{rC != 0}
 		\end{itemize}
 		\item \texttt{\textbf{addi} rA, rB, simm16}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0000 aaaa bbbb 0000  iiii iiii iiii iiii}
+			\item Encoding:  \texttt{0x0 a b 0x0  iiii}
 		\end{itemize}
 
-		\item \texttt{\textbf{sub} rA, rB, rC}
+		\item \texttt{\textbf{rsb} rA, rB, rC}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0001 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding:  \texttt{0x1 a b c  0x0000}
 			\item Encoding Note:  \texttt{rC != 0}
 		\end{itemize}
-		\item \texttt{\textbf{subi} rA, rB, simm16}
+		\item \texttt{\textbf{rsbi} rA, rB, simm16}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0001 aaaa bbbb 0000  iiii iiii iiii iiii}
+			\item Encoding:  \texttt{0x1 a b 0x0  iiii}
 		\end{itemize}
 
 		\item \texttt{\textbf{sltu} rA, rB, rC}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0010 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding:  \texttt{0x2 a b c  0x0000}
 			\item Encoding Note:  \texttt{rC != 0}
 		\end{itemize}
 		\item \texttt{\textbf{sltui} rA, rB, simm16}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0010 aaaa bbbb 0000  iiii iiii iiii iiii}
+			\item Encoding:  \texttt{0x2 a b 0x0  iiii}
 		\end{itemize}
 
 		\item \texttt{\textbf{slts} rA, rB, rC}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0011 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding:  \texttt{0x3 a b c  0x0000}
 			\item Encoding Note:  \texttt{rC != 0}
 		\end{itemize}
 		\item \texttt{\textbf{sltsi} rA, rB, simm16}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0011 aaaa bbbb 0000  iiii iiii iiii iiii}
+			\item Encoding:  \texttt{0x3 a b 0x0  iiii}
 		\end{itemize}
 
-		\item \texttt{\textbf{add} rA, pc, rC}
+
+		\item \texttt{\textbf{nor} rA, rB, rC}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0100 aaaa 0000 cccc  0000 0000 0000 0000}
+			\item Encoding:  \texttt{0x4 a b c  0x0000}
 			\item Encoding Note:  \texttt{rC != 0}
 		\end{itemize}
-		\item \texttt{\textbf{addi} rA, pc, simm16}
+		\item \texttt{\textbf{nori} rA, rB, simm16}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0100 aaaa 0000 0000  iiii iiii iiii iiii}
+			\item Encoding:  \texttt{0x4 a b 0x0  iiii}
 		\end{itemize}
 
-		\item \texttt{\textbf{lui} rA, simm16}
-		\begin{itemize}
-			\item Encoding: 
-				\texttt{0101 aaaa 0000 0000  iiii iiii iiii iiii}
-		\end{itemize}
 
 		\item \texttt{\textbf{lsl} rA, rB, rC}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0110 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding:  \texttt{0x5 a b c  0x0000}
 			\item Encoding Note:  \texttt{rC != 0}
 		\end{itemize}
 		\item \texttt{\textbf{lsli} rA, rB, simm16}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0110 aaaa bbbb 0000  iiii iiii iiii iiii}
+			\item Encoding:  \texttt{0x5 a b 0x0  iiii}
 		\end{itemize}
+
 
 		\item \texttt{\textbf{lsr} rA, rB, rC}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0111 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding:  \texttt{0x6 a b c  0x0000}
 			\item Encoding Note:  \texttt{rC != 0}
 		\end{itemize}
 		\item \texttt{\textbf{lsri} rA, rB, simm16}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{0111 aaaa bbbb 0000  iiii iiii iiii iiii}
+			\item Encoding:  \texttt{0x6 a b 0x0  iiii}
 		\end{itemize}
+
 
 		\item \texttt{\textbf{asr} rA, rB, rC}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{1000 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding:  \texttt{0x7 a b c  0x0000}
 			\item Encoding Note:  \texttt{rC != 0}
 		\end{itemize}
 		\item \texttt{\textbf{asri} rA, rB, simm16}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{1000 aaaa bbbb 0000  iiii iiii iiii iiii}
+			\item Encoding:  \texttt{0x7 a b 0x0  iiii}
 		\end{itemize}
 
 
-		\item \texttt{\textbf{jmp} rA}
+		\item \texttt{\textbf{ldr} rA, rB, rC}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{1001 aaaa 0000 0000  0000 0000 0000 0000}
-		\end{itemize}
-
-		\item \texttt{\textbf{beq} rA, rB, simm16}
-		\begin{itemize}
-			\item Encoding: 
-				\texttt{1010 aaaa bbbb 0000  iiii iiii iiii iiii}
-		\end{itemize}
-
-		\item \texttt{\textbf{bne} rA, rB, simm16}
-		\begin{itemize}
-			\item Encoding: 
-				\texttt{1011 aaaa bbbb 0000  iiii iiii iiii iiii}
-		\end{itemize}
-
-		\item \texttt{\textbf{ldr} rA, [rB, rC]}
-		\begin{itemize}
-			\item Encoding: 
-				\texttt{1100 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding:  \texttt{0x8 a b c  0x0000}
 			\item Encoding Note:  \texttt{rC != 0}
 		\end{itemize}
-		\item \texttt{\textbf{ldri} rA, [rB, simm16]}
+		\item \texttt{\textbf{ldri} rA, rB, simm16}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{1100 aaaa bbbb 0000  iiii iiii iiii iiii}
+			\item Encoding:  \texttt{0x8 a b 0x0  iiii}
 		\end{itemize}
 
-		\item \texttt{\textbf{str} rA, [rB, rC]}
+
+		\item \texttt{\textbf{str} rA, rB, rC}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{1101 aaaa bbbb cccc  0000 0000 0000 0000}
+			\item Encoding:  \texttt{0x9 a b c  0x0000}
 			\item Encoding Note:  \texttt{rC != 0}
 		\end{itemize}
-		\item \texttt{\textbf{stri} rA, [rB, simm16]}
+		\item \texttt{\textbf{stri} rA, rB, simm16}
 		\begin{itemize}
-			\item Encoding: 
-				\texttt{1101 aaaa bbbb 0000  iiii iiii iiii iiii}
+			\item Encoding:  \texttt{0x9 a b 0x0  iiii}
 		\end{itemize}
 
+
+
+		\item Extended Instructions
+		\begin{itemize}
+			\item \texttt{\textbf{lui} rA, simm16}
+			\begin{itemize}
+				\item Encoding:  \texttt{0xf a 0x0 0x0  iiii}
+			\end{itemize}
+
+			\item \texttt{\textbf{addi} rA, pc, simm16}
+			\begin{itemize}
+				\item Encoding:  \texttt{0xf a 0x0 0x1  iiii}
+			\end{itemize}
+
+			\item \texttt{\textbf{beq} rA, rB, simm16}
+			\begin{itemize}
+				\item Encoding:  \texttt{0xf a b 0x2  iiii}
+			\end{itemize}
+
+			\item \texttt{\textbf{bne} rA, rB, simm16}
+			\begin{itemize}
+				\item Encoding:  \texttt{0xf a b 0x3  iiii}
+			\end{itemize}
+
+			\item \texttt{\textbf{jmp} rA}
+			\begin{itemize}
+				\item Encoding:  \texttt{0xf a 0x0 0x4  0x0000}
+			\end{itemize}
+		\end{itemize}
 	\end{itemize}
 
 

@@ -11,7 +11,8 @@ BUILD_DIR:=build
 COMP:=ghdl
 
 
-GLOBAL_FLAGS:=--std=08
+#GLOBAL_FLAGS:=--std=08
+GLOBAL_FLAGS:=--std=93
 
 RUN_FLAGS:=$(GLOBAL_FLAGS)
 
